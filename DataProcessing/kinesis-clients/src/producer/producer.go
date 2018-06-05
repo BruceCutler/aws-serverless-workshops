@@ -16,12 +16,12 @@ import (
 const minDistance = 100
 const maxDistance = 200
 const distanceDelta = 20
-const latitudeStart = 40.749167
-const longitudeStart = -73.985184
+const latitudeStart = 42.349942 
+const longitudeStart = -71.070915
 const latitudeOffset = 110540
 const longitudeOffset = 111320
 const pointsStart = 150
-
+ 
 type unicornStatus struct {
 	Name         *string
 	StatusTime   string
@@ -82,6 +82,9 @@ func simulateUnicorn(client *kinesis.Kinesis, name, region, stream *string) {
 			fmt.Println(err)
 			os.Exit(1)
 		}
+
+		nl := "\n"
+		status = append(status, nl...)
 
 		<-ticker.C
 		_, err = client.PutRecord(
